@@ -1,0 +1,101 @@
+--- # Generic CMEF Config File
+# $Id: v5config.yml 3922 2013-11-09 01:06:23Z dbhart $
+driver:
+# ^^^ Only relevant when executing using CMEF ConsoleApp - when using a library, this
+#     has presumably already been handled or specified
+    CMEF version: 1.0-SNAPSHOT
+    model name: Some_Value
+    model version: N/A
+    # engine: gov.sandia.cmef.Engine
+    # ^^^ Optional; default engine is gov.sandia.cmef.Engine 
+    #     Class must extend g.s.c.Engine and the fully qualified name must be entered here
+    # components: gov.sandia.cmef.Components
+    # ^^^ Optional; default components is gov.sandia.cmef.Components 
+    #     Class must extend g.s.c.Components and the fully qualified name must be entered here
+    controller: myControllerName    
+
+# The basic format of the remainder of the file is:
+# ${ComponentType}:
+#    ${Name}:
+#        ${ClassName}:
+#            ${Option1}: ${Value1}
+#            ...
+#
+# Passing the HashMap( ${Name}: {...} ) submap to the Components configuration 
+# parser creates a descriptor object, which can then be used to generate 
+# actual component objects.
+#
+# The ${ClassName} must either be a recognized class (from within the
+# g.s.c.impl.* packages) or be a fully qualified class name. Classes used in the
+# controllers section must implement the Controller interface; in connections they
+# must implement Messageable or one of InputConnection, OutputConnection, or 
+# ModelConnection interfaces. In data channels and subcomponents, the specified
+# classes must implement DataChannel or SubComponent interfaces, respectively.
+    
+controllers:
+# ^^^ CMEF allows multiple controllers to be entered here -- only one controller
+#     can be used, however. Therefore, if more than one controller is provided
+#     the controller to use must be specified in the "driver" section above
+    myControllerName: 
+    # ^^^ This is the "instance-id" name
+        Batch:
+        # ^^^ This is the Controller implementation class
+            stepDynamic: false
+            stepSize: '00:20:00'
+            stepFinal: '04/30/2006 23:40:00'
+            pollRate: "00:00:01"
+            globalStepFormat: "MM/dd/yyyy HH:mm:ss"
+            globalDataStyle: "all"
+            stepType: date/time
+            stepStart: '02/21/2006 00:00:00'
+
+connections:
+# List of InputConnection, OutputConnection, ModelConnection objects to create
+    stationb_in:
+        CSVReaderWide:
+            location: Tutorial_Station_B.csv
+            enabled: true
+            use for: input
+            steps are synchronized: true
+            timestep options: {field: TIME_STEP}
+    stationb_out:
+        CSVWriter:
+            location: output.csv
+            useFor: output
+            stepsAreSynchronized: true
+            enabled: true
+    stationb_model:
+        ModelSmoke:
+            tag: stationB
+            inputs: [ stationb_in ]
+            outputs: [ stationb_out ]
+            channels: [ myChannelName ]
+            subcomponents: [ test ]
+
+data channels:
+# List of DataChannel objects to be created. Used by Connection objects to
+#   modify message values and/or change the behavior of the connection based
+#   on the input data values
+    myChannelName:
+        SimpleValue:
+            tag: B_PLNT_PRES_OP
+            name: TEST_PRES_PLNT
+            parameter: PRES
+            valid range: [-.inf, .inf]
+            precision: 0.4
+            usage: op
+            set points: [-.inf, .inf]
+            units: PSI
+
+subcomponents:
+# List of SubComponent objects to be created. Used to pass model-specific 
+#   sub-components. In other words, configurations for objects that may
+#   be shared (or instantiated within) multiple Connections at once, but 
+#   where repeating the configuration is not truly necessary.
+    test:
+        SubComponentSmoke:
+            history window: 36
+            outlier threshold: 0.8
+            event threshold: 0.85
+            event timeout: 12
+            event window save: 30

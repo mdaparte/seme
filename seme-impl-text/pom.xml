@@ -1,0 +1,171 @@
+
+<!--
+Copyright 2014 Sandia Corporation.
+Under the terms of Contract DE-AC04-94AL85000 with Sandia Corporation, the U.S.
+Government retains certain rights in this software.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+This software was written as part of an Inter-Agency Agreement between Sandia
+National Laboratories and the US EPA NHSRC.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>gov.sandia.seme</groupId>
+  <artifactId>seme-impl-text</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>seme-impl-text</name>
+  <url>http://maven.apache.org</url>
+
+    <organization>
+        <name>Sandia Corporation</name>
+        <url>http://www.sandia.gov/</url>
+    </organization>
+    <inceptionYear>2013</inceptionYear>
+    <ciManagement>
+        <system>hudson</system>
+        <url>https://jenkins.sandia.gov/job/seme-impl-text_trunk/</url>
+    </ciManagement>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>David B. Hart</name>
+            <id>dbhart</id>
+            <email>dbhart at sandia dot gov</email>
+            <organization>Sandia National Laboratories</organization>
+            <roles>
+                <role>lead developer</role>
+            </roles>
+            <timezone>America/Denver</timezone>
+        </developer>
+        <developer>
+            <name>Nathanael Rackley</name>
+            <id>nprackl</id>
+            <organization>Sandia National Laboratories</organization>
+            <roles>
+                <role>software developer</role>
+            </roles>
+            <timezone>America/Denver</timezone>
+        </developer>
+    </developers>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.copyright>Copyright {currentYear} ${project.organization.name}\n${canaryeds.DOEstatement}</project.copyright>
+        <project.DOEstatement>Under the terms of Contract DE-AC04-94AL85000 with Sandia Corporation,\nthe U.S. Government retains certain rights in this software.</project.DOEstatement>
+        <netbeans.hint.license>apache20_sandia</netbeans.hint.license>
+    </properties>
+
+
+  <dependencies>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>seme-framework</artifactId>
+      <version>${project.version}</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>argparse4j</artifactId>
+          <groupId>net.sourceforge.argparse4j</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+      <type>jar</type>
+    </dependency>
+  </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.3.2</version>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <formats>
+                        <format>xml</format>
+                    </formats>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <configuration>
+                    <bottom>Copyright {currentYear} {organizationName}. ${project.DOEstatement}</bottom>
+                    <show>package</show>
+                    <author>false</author>
+                    <version>false</version>
+		    <header>${project.name} version ${project.version}</header>
+                    <docfilessubdirs>true</docfilessubdirs>
+                    <archive>
+                        <manifest>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <formats>
+                        <format>xml</format>
+                    </formats>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>2.10</version>
+                <configuration>
+                    <configLocation>config/sun_checks.xml</configLocation>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
+
+</project>
