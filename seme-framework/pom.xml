@@ -1,4 +1,3 @@
-
 <!--
 Copyright 2014 Sandia Corporation.
 Under the terms of Contract DE-AC04-94AL85000 with Sandia Corporation, the U.S.
@@ -24,33 +23,31 @@ National Laboratories and the US EPA NHSRC.
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>gov.sandia.seme</groupId>
+    
     <artifactId>seme-framework</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    
     <packaging>jar</packaging>
-
+    
     <name>seme-framework</name>
+    
+    <version>1.0-SNAPSHOT</version>
+    
     <description>Provides a message passing framework between generic input, model and output 
         drivers, and specifies an API for developing such drivers. Also provides batch and 
         real-time controllers which step the model and I/O through the time domain (or 
         other discrete domain), and sample I/O drivers. This is a library framework, and
-        does not, itself, solve any problems or execute any modelling.</description>
-    <url>http://maven.apache.org</url>
-    <organization>
-        <name>Sandia Corporation</name>
-        <url>http://www.sandia.gov/</url>
-    </organization>
-    <inceptionYear>2013</inceptionYear>
+        does not, itself, solve any problems or execute any modelling.
+    </description>
+
+    <url>https://software.sandia.gov/trac/canary</url>
+
     <ciManagement>
         <system>hudson</system>
         <url>https://jenkins.sandia.gov/job/seme-framework_trunk/</url>
     </ciManagement>
-    <licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
+
+    <inceptionYear>2013</inceptionYear>
+
     <developers>
         <developer>
             <name>David B. Hart</name>
@@ -60,12 +57,14 @@ National Laboratories and the US EPA NHSRC.
             <roles>
                 <role>lead developer</role>
             </roles>
+            <organizationUrl>http://www.sandia.gov</organizationUrl>
             <timezone>America/Denver</timezone>
         </developer>
         <developer>
             <name>Nathanael Rackley</name>
             <id>nprackl</id>
             <organization>Sandia National Laboratories</organization>
+            <organizationUrl>http://www.sandia.gov</organizationUrl>
             <roles>
                 <role>software developer</role>
             </roles>
@@ -73,32 +72,27 @@ National Laboratories and the US EPA NHSRC.
         </developer>
     </developers>
 
-    <properties>
-        <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.copyright>Copyright {currentYear} ${project.organization.name}\n${canaryeds.DOEstatement}</project.copyright>
-        <project.DOEstatement>Under the terms of Contract DE-AC04-94AL85000 with Sandia Corporation,\nthe U.S. Government retains certain rights in this software.</project.DOEstatement>
-        <netbeans.hint.license>apache20_sandia</netbeans.hint.license>
-    </properties>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>manual</distribution>
+        </license>
+    </licenses>
 
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.11</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
-        </dependency>
-        <dependency>
-            <groupId>net.sourceforge.argparse4j</groupId>
-            <artifactId>argparse4j</artifactId>
-            <version>0.4.1</version>
-        </dependency>
-    </dependencies>
+    <scm>
+        <connection>scm:svn:https://software.sandia.gov/svn/teva/canary/seme-framework</connection>
+        <developerConnection>scm:svn:https://software.sandia.gov/svn/teva/canary/seme-framework</developerConnection>
+        <tag>HEAD</tag>
+        <url>https://software.sandia.gov/svn/teva/canary/seme-framework</url>
+    </scm>
+
+    <organization>
+        <name>Sandia National Laboratories</name>
+        <url>http://www.sandia.gov/</url>
+    </organization>
+
+    <!-- Build Settings -->
     <build>
         <plugins>
             <plugin>
@@ -146,6 +140,21 @@ National Laboratories and the US EPA NHSRC.
             </plugin>
         </plugins>
     </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+    </dependencies>
+
     <reporting>
         <plugins>
             <plugin>
@@ -165,4 +174,12 @@ National Laboratories and the US EPA NHSRC.
             </plugin>
         </plugins>
     </reporting>
+
+    <properties>
+        <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.copyright>Copyright {currentYear} ${project.organization.name}\n${canaryeds.DOEstatement}</project.copyright>
+        <project.DOEstatement>Under the terms of Contract DE-AC04-94AL85000 with Sandia Corporation,\nthe U.S. Government retains certain rights in this software.</project.DOEstatement>
+    </properties>
+
 </project>

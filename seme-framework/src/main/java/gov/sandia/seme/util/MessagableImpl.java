@@ -46,6 +46,10 @@ public abstract class MessagableImpl implements Messagable {
      */
     protected boolean debug = false;
     static final Logger LOG = Logger.getLogger(MessagableImpl.class);
+
+    /**
+     * Configuration options and metadata.
+     */
     protected final HashMap<String, Object> metaData = new HashMap();
 
     /**
@@ -144,6 +148,11 @@ public abstract class MessagableImpl implements Messagable {
         this.componentFactory = componentFactory;
     }
 
+    /**
+     * Constructor for messagable with name and delay.
+     * @param label name for this messagable
+     * @param delay default execution delay between loops
+     */
     public MessagableImpl(String label, int delay) {
         this.name = label;
         this.delay = delay;
@@ -151,6 +160,9 @@ public abstract class MessagableImpl implements Messagable {
         this.produces = new ArrayList();
     }
 
+    /**
+     * Constructor for blank messagable.
+     */
     public MessagableImpl() {
         this.name = "undefined";
         this.delay = 1;

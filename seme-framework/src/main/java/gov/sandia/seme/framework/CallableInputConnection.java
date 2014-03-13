@@ -40,6 +40,10 @@ public final class CallableInputConnection implements Callable<String> {
 
     private final InputConnection conn;
 
+    /**
+     *
+     * @param conn
+     */
     public CallableInputConnection(InputConnection conn) {
         this.conn = conn;
     }

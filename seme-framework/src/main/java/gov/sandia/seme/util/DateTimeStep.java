@@ -21,6 +21,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.apache.log4j.Logger;
 
+/**
+ * Provides a Date/Time step object. Underlying values are stored as 
+ * java::util::Date objects.
+ * 
+ * @htmlonly
+ * @author David Hart, dbhart
+ * @since 1.0
+ * @endhtmlonly
+ */
 public class DateTimeStep implements Step {
 
     static final long serialVersionUID = -8586292539083219916L;
@@ -97,7 +106,7 @@ public class DateTimeStep implements Step {
         int ret;
         try {
             ret = ((Date) value).compareTo((Date)((Step) s).getValue());
-        } catch (Exception ex) {
+        } catch (ClassCastException ex) {
             Logger.getLogger("canaryeds").warn(
                     "Comparing different types of steps - now comparing based on index (" + value + "<>"
                     + ((Step) s).getValue() + ")", ex);

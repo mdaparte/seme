@@ -37,6 +37,10 @@ public final class CallableOutputConnection implements Callable<String> {
 
     private final OutputConnection conn;
 
+    /**
+     *
+     * @param conn
+     */
     public CallableOutputConnection(OutputConnection conn) {
         this.conn = conn;
     }

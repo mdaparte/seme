@@ -46,6 +46,10 @@ public abstract class ControllerImpl implements Controller {
 
     private static final Logger LOG = Logger.getLogger(
             ControllerImpl.class.getName());
+
+    /**
+     * Contains configuration and metadata.
+     */
     protected final HashMap<String, Object> metaData = new HashMap();
 
     /**

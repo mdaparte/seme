@@ -33,8 +33,14 @@ import java.util.Map;
  */
 public class DescribableImpl implements Describable {
 
+    /**
+     * Configuration options and metadata.
+     */
     protected final HashMap<String, Object> metaData = new HashMap();
 
+    /**
+     * Constructor for new blank describable.
+     */
     public DescribableImpl() {
     }
 

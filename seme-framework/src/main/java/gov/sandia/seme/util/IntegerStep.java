@@ -21,8 +21,13 @@ import java.text.DecimalFormat;
 import org.apache.log4j.Logger;
 
 /**
- *
- * @author Sandia Corporation
+ * Provides a discrete value step object. Underlying values are stored as 
+ * Integer objects.
+ * 
+ * @htmlonly
+ * @author David Hart, dbhart
+ * @since 1.0
+ * @endhtmlonly
  */
 public class IntegerStep implements Step {
 
@@ -95,14 +100,15 @@ public class IntegerStep implements Step {
      * @param s step to be compared
      * @return comparison (-1=less than, 0=equal, 1=greater than)
      */
+    @Override
     public int compareTo(Object s) {
         int ret;
         try {
-            ret = ((Integer) value).compareTo((Integer)((Step) s).getValue());
-        } catch (Exception ex) {
+            ret = ((Integer) value).compareTo((int)((Step) s).getValue());
+        } catch (ClassCastException ex) {
             Logger.getLogger("canaryeds").warn(
                     "Comparing different types of steps - now comparing based on index (" + value + "<>"
-                    + ((Step) s).getValue() + ")", ex);
+                    + ((Step) s).getValue() + ")");
             ret = (new Integer(this.getIndex())).compareTo(((Step) s).getIndex());
         }
         return ret;
@@ -113,6 +119,7 @@ public class IntegerStep implements Step {
      *
      * @return number/date format
      */
+    @Override
     public String getFormat() {
         return format;
     }
@@ -122,6 +129,7 @@ public class IntegerStep implements Step {
      *
      * @param format
      */
+    @Override
     public void setFormat(String format) {
         this.format = format;
     }
@@ -131,6 +139,7 @@ public class IntegerStep implements Step {
      *
      * @return index for current value
      */
+    @Override
     public int getIndex() {
         return index;
     }
@@ -140,6 +149,7 @@ public class IntegerStep implements Step {
      *
      * @param index to calculate new value from
      */
+    @Override
     public void setIndex(int index) {
         if (value == null) {
             return;
@@ -159,6 +169,7 @@ public class IntegerStep implements Step {
      *
      * @return step origin (date or number)
      */
+    @Override
     public Integer getOrigin() {
         return origin;
     }
@@ -168,6 +179,7 @@ public class IntegerStep implements Step {
      *
      * @param origin value
      */
+    @Override
     public void setOrigin(Object origin) {
         this.origin = (Integer) origin;
         this.calculate();
@@ -178,6 +190,7 @@ public class IntegerStep implements Step {
      *
      * @return bin size for steps
      */
+    @Override
     public Integer getStepSize() {
         return stepSize;
     }
@@ -187,6 +200,7 @@ public class IntegerStep implements Step {
      *
      * @param stepSize delta
      */
+    @Override
     public void setStepSize(Object stepSize) {
         this.stepSize = (Integer) stepSize;
         this.calculate();
@@ -197,6 +211,7 @@ public class IntegerStep implements Step {
      *
      * @return the step value
      */
+    @Override
     public Integer getValue() {
         return value;
     }
@@ -206,6 +221,7 @@ public class IntegerStep implements Step {
      *
      * @param value current value
      */
+    @Override
     public void setValue(Object value) {
         this.value = (Integer) value;
         this.calculate();

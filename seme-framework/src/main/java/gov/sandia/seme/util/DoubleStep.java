@@ -22,8 +22,13 @@ import java.text.DecimalFormat;
 import org.apache.log4j.Logger;
 
 /**
- *
- * @author Sandia Corporation
+ * Provides a continuous value step object. Underlying values are stored as 
+ * Double objects.
+ * 
+ * @htmlonly
+ * @author David Hart, dbhart
+ * @since 1.0
+ * @endhtmlonly
  */
 public class DoubleStep implements Step {
 
@@ -96,14 +101,15 @@ public class DoubleStep implements Step {
      * @param s step to be compared
      * @return comparison (-1=less than, 0=equal, 1=greater than)
      */
+    @Override
     public int compareTo(Object s) {
         int ret;
         try {
-            ret = ((Double) value).compareTo((Double)((Step) s).getValue());
-        } catch (Exception ex) {
+            ret = ((Double) value).compareTo((double)((Step) s).getValue());
+        } catch (ClassCastException ex) {
             Logger.getLogger("canaryeds").warn(
                     "Comparing different types of steps - now comparing based on index (" + value + "<>"
-                    + ((Step) s).getValue() + ")", ex);
+                    + ((Step) s).getValue() + ")");
             ret = (new Integer(this.getIndex())).compareTo(((Step) s).getIndex());
         }
         return ret;
@@ -114,6 +120,7 @@ public class DoubleStep implements Step {
      *
      * @return number/date format
      */
+    @Override
     public String getFormat() {
         return format;
     }
@@ -123,6 +130,7 @@ public class DoubleStep implements Step {
      *
      * @param format
      */
+    @Override
     public void setFormat(String format) {
         this.format = format;
     }
@@ -132,6 +140,7 @@ public class DoubleStep implements Step {
      *
      * @return index for current value
      */
+    @Override
     public int getIndex() {
         return index;
     }
@@ -141,6 +150,7 @@ public class DoubleStep implements Step {
      *
      * @param index to calculate new value from
      */
+    @Override
     public void setIndex(int index) {
         if (value == null) {
             return;
@@ -160,6 +170,7 @@ public class DoubleStep implements Step {
      *
      * @return step origin (date or number)
      */
+    @Override
     public Double getOrigin() {
         return origin;
     }
@@ -169,6 +180,7 @@ public class DoubleStep implements Step {
      *
      * @param origin value
      */
+    @Override
     public void setOrigin(Object origin) {
         this.origin = (Double) origin;
         this.calculate();
@@ -179,6 +191,7 @@ public class DoubleStep implements Step {
      *
      * @return bin size for steps
      */
+    @Override
     public Double getStepSize() {
         return stepSize;
     }
@@ -188,6 +201,7 @@ public class DoubleStep implements Step {
      *
      * @param stepSize delta
      */
+    @Override
     public void setStepSize(Object stepSize) {
         this.stepSize = (Double) stepSize;
         this.calculate();
@@ -198,6 +212,7 @@ public class DoubleStep implements Step {
      *
      * @return the step value
      */
+    @Override
     public Double getValue() {
         return value;
     }
@@ -207,6 +222,7 @@ public class DoubleStep implements Step {
      *
      * @param value current value
      */
+    @Override
     public void setValue(Object value) {
         this.value = (Double) value;
         this.calculate();

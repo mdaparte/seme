@@ -37,6 +37,10 @@ public final class CallableModelConnection implements Callable<String> {
 
     private final ModelConnection conn;
 
+    /**
+     *
+     * @param conn
+     */
     public CallableModelConnection(ModelConnection conn) {
         this.conn = conn;
     }
