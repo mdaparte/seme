@@ -26,7 +26,7 @@ import gov.sandia.seme.util.IntegerStep;
 import java.util.Date;
 import org.junit.After;
 import org.junit.AfterClass;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -231,5 +231,45 @@ public class StepTest {
         assertEquals("22.500", fStep.toString());
         assertEquals("1972 7 1 21:0:0 PM", dStep.toString());
     }
-
+    
+    /**
+     * Test the handling of null values.
+     */
+    @Test
+    public void testNullHandling() {
+        DateTimeStep dtstep1 = new DateTimeStep();
+        IntegerStep istep1 = new IntegerStep();
+        DoubleStep dstep1 = new DoubleStep();
+        assertNull(dtstep1.getValue());
+        assertNull(istep1.getValue());
+        assertNull(dstep1.getValue());
+        assertNull(dtstep1.toString());
+        assertNull(istep1.toString());
+        assertNull(dstep1.toString());
+        dtstep1.setIndex(42);
+        istep1.setIndex(42);
+        dstep1.setIndex(42);
+        dtstep1 = new DateTimeStep(this.dStep);
+        istep1 = new IntegerStep(this.iStep);
+        dstep1 = new DoubleStep(this.fStep);
+        assertEquals(dtstep1.getIndex(),this.dStep.getIndex());
+        assertEquals(istep1.getIndex(),this.iStep.getIndex());
+        assertEquals(dstep1.getIndex(),this.fStep.getIndex());
+        dtstep1.setIndex(42);
+        istep1.setIndex(42);
+        dstep1.setIndex(42);
+        assertEquals(42,dtstep1.getIndex());
+        assertEquals(42,dstep1.getIndex());
+        assertEquals(42,istep1.getIndex());
+        dtstep1.setFormat("");
+        istep1.setFormat("");
+        dstep1.setFormat("");
+        System.out.println(dtstep1);
+        System.out.println(istep1);
+        System.out.println(dstep1);
+        assertEquals(0,dtstep1.compareTo(istep1));
+        assertEquals(0,istep1.compareTo(dstep1));
+        assertEquals(0,dstep1.compareTo(dtstep1));
+    }
+    
 }

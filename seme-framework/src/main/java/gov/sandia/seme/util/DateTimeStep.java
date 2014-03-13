@@ -43,10 +43,12 @@ public class DateTimeStep implements Step {
      * Create a new, blank step.
      */
     public DateTimeStep() {
+        this.index = Integer.MIN_VALUE;
         origin = null;
         stepSize = null;
         value = null;
         format = "";
+        this.calculate();
     }
 
     /**
@@ -109,7 +111,7 @@ public class DateTimeStep implements Step {
         } catch (ClassCastException ex) {
             Logger.getLogger("canaryeds").warn(
                     "Comparing different types of steps - now comparing based on index (" + value + "<>"
-                    + ((Step) s).getValue() + ")", ex);
+                    + ((Step) s).getValue() + ")");
             ret = (new Integer(this.getIndex())).compareTo(((Step) s).getIndex());
         }
         return ret;

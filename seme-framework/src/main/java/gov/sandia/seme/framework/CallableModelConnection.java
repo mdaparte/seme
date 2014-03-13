@@ -38,8 +38,8 @@ public final class CallableModelConnection implements Callable<String> {
     private final ModelConnection conn;
 
     /**
-     *
-     * @param conn
+     * Create a new Callable based on an ModelConnection.
+     * @param conn ModelConnection object to run
      */
     public CallableModelConnection(ModelConnection conn) {
         this.conn = conn;

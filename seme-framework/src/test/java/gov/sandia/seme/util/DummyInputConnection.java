@@ -29,38 +29,33 @@ import gov.sandia.seme.util.MessagableImpl;
  * @author nprackl
  */
 public class DummyInputConnection  extends MessagableImpl implements InputConnection {
-    /**
-     *
-     * @param label
-     * @param delay
-     */
+    
     public DummyInputConnection(String label, int delay) {
         super(label, delay);
     }
 
     @Override
     public int readInputAndProduceMessages() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return 0;
     }
 
     @Override
     public int readInputAndProduceMessages(Step stepPar) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return 1;
     }
 
     @Override
     public boolean isInputConstrainedToCurrentStep() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return true;
     }
 
     @Override
     public void setInputConstrainedToCurrentStep(boolean contrain) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public String getSourceLocation() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "testLoc";
     }
 
     @Override

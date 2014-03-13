@@ -41,8 +41,8 @@ public final class CallableInputConnection implements Callable<String> {
     private final InputConnection conn;
 
     /**
-     *
-     * @param conn
+     * Create a new Callable based on an InputConnection.
+     * @param conn InputConnection object to run
      */
     public CallableInputConnection(InputConnection conn) {
         this.conn = conn;

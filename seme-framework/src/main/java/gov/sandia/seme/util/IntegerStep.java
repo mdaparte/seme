@@ -42,10 +42,12 @@ public class IntegerStep implements Step {
      * Create a new, blank step.
      */
     public IntegerStep() {
+        index = Integer.MIN_VALUE;
         origin = null;
         stepSize = null;
         value = null;
         format = "";
+        this.calculate();
     }
 
     /**

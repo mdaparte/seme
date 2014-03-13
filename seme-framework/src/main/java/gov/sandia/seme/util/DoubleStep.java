@@ -43,10 +43,12 @@ public class DoubleStep implements Step {
      * Create a new, blank step.
      */
     public DoubleStep() {
+        index = Integer.MIN_VALUE;
         origin = null;
         stepSize = null;
         value = null;
         format = "";
+        this.calculate();
     }
 
     /**
@@ -161,7 +163,7 @@ public class DoubleStep implements Step {
             if (tmp3 == 0) {
                 return;
             }
-            value = (Double) (Number) ceil((tmp2) + index * tmp3);
+            value = (Double) (Number) ((tmp2) + index * tmp3);
         this.calculate();
     }
 
