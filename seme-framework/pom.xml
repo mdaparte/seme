@@ -22,6 +22,12 @@ National Laboratories and the US EPA NHSRC.
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+<parent>
+ <groupId>gov.sandia.canaryeds</groupId>
+ <artifactId>gov-sandia-canaryeds</artifactId>
+ <version>5</version>
+</parent>
+
     <groupId>gov.sandia.seme</groupId>
     
     <artifactId>seme-framework</artifactId>
