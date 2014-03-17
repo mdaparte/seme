@@ -9,11 +9,11 @@
     <version>1.0</version>
 
     <!-- POM Relationships and Dependencies /-->
-    <parent>
+    <!--><parent>
         <groupId>org.sonatype.oss</groupId>
         <artifactId>oss-parent</artifactId>
         <version>7</version>
-    </parent>
+    </parent></-->
     <modules>
         <module>seme-framework</module>
     </modules>
