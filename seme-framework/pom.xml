@@ -223,7 +223,11 @@
     </organization>
 
     <!-- Environment settings /-->
-    <scm>
+  <issueManagement>
+    <system>trac</system>
+    <url>https://software.sandia.gov/trac/seme-framework/</url>
+  </issueManagement>
+  <scm>
         <connection>scm:svn:https://software.sandia.gov/svn/teva/canary/seme/trunk/seme-framework</connection>
         <developerConnection>scm:svn:https://software.sandia.gov/svn/teva/canary/seme/trunk/seme-framework</developerConnection>
         <tag>HEAD</tag>
