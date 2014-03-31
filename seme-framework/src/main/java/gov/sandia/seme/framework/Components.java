@@ -201,6 +201,9 @@ public class Components {
             throws ConfigurationException {
         LOG.trace("-> getChannelDescriptors");
         String className;
+        if (config == null) {
+            throw new ConfigurationException("Trying to configure a non-existant workflow!");
+        }
         HashMap<String, Descriptor> hash = new HashMap();
         for (Iterator it = config.keySet().iterator(); it.hasNext();) {
             Object k = it.next();
@@ -244,7 +247,9 @@ public class Components {
         LOG.trace("-> getConnectorDescriptors");
         String className;
         HashMap<String, Descriptor> hash = new HashMap();
-        // FIXME: null pointer handling
+        if (config == null) {
+            throw new ConfigurationException("Trying to configure a non-existant workflow!");
+        }
         for (Iterator it = config.keySet().iterator(); it.hasNext();) {
             Object k = it.next();
             String id = (String) k;
@@ -299,6 +304,9 @@ public class Components {
         LOG.trace("-> getControllerDescriptors");
         Descriptor description;
         String className;
+        if (config == null) {
+            throw new ConfigurationException("Trying to configure a non-existant workflow!");
+        }
         HashMap<String, Descriptor> hash = new HashMap();
         for (Iterator it = config.keySet().iterator(); it.hasNext();) {
             Object k = it.next();
