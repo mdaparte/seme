@@ -21,6 +21,7 @@
 package gov.sandia.seme.util;
 
 import gov.sandia.seme.framework.Components;
+import gov.sandia.seme.framework.ConfigurationException;
 import gov.sandia.seme.framework.Descriptor;
 import gov.sandia.seme.framework.Message;
 import gov.sandia.seme.framework.Step;
@@ -408,7 +409,7 @@ public class MessageableImplTest {
      * Test of MessagableImpl#configure method.
      */
     @Test
-    public void testConfigure() {
+    public void testConfigure() throws ConfigurationException {
         System.out.println("Test Configure");
         
         System.out.println("  Generating Descriptor...");

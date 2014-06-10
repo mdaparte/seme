@@ -22,6 +22,7 @@ package gov.sandia.seme.util;
 
 import gov.sandia.seme.framework.InitializationException;
 import gov.sandia.seme.framework.Components;
+import gov.sandia.seme.framework.ConfigurationException;
 import gov.sandia.seme.framework.Descriptor;
 import gov.sandia.seme.framework.Messagable;
 import gov.sandia.seme.framework.Message;
@@ -343,7 +344,7 @@ public abstract class MessagableImpl implements Messagable {
     }
 
     @Override
-    public void configure(Descriptor config) {
+    public void configure(Descriptor config) throws ConfigurationException{
         this.name = config.getName();
         for (String consume : config.getConsumesTags()) {
             addConsumes(consume);

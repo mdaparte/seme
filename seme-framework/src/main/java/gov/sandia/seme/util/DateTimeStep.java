@@ -17,8 +17,10 @@ package gov.sandia.seme.util;
 
 import gov.sandia.seme.framework.Step;
 import static java.lang.Math.ceil;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
 import org.apache.log4j.Logger;
 
 /**
@@ -226,7 +228,15 @@ public class DateTimeStep implements Step {
      */
     @Override
     public void setValue(Object value) {
-        this.value = (Date) value;
+        if (value instanceof String) {
+            try {
+                this.value = new SimpleDateFormat(format).parse((String) value);
+            } catch (ParseException ex) {
+                java.util.logging.Logger.getLogger(DateTimeStep.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            this.value = (Date) value;
+        }
         this.calculate();
     }
 

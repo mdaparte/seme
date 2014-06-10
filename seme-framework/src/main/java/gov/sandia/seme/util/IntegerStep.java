@@ -225,7 +225,11 @@ public class IntegerStep implements Step {
      */
     @Override
     public void setValue(Object value) {
-        this.value = (Integer) value;
+        if (value instanceof String) {
+            Integer.getInteger((String) value);
+        } else {
+            this.value = (Integer) value;
+        }
         this.calculate();
     }
 
