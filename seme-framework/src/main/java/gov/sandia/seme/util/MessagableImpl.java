@@ -51,7 +51,7 @@ public abstract class MessagableImpl implements Messagable {
     /**
      * Configuration options and metadata.
      */
-    protected final HashMap<String, Object> metaData = new HashMap();
+    protected final HashMap<String, Object> metaData;
 
     /**
      * Name of the connection object.
@@ -97,17 +97,17 @@ public abstract class MessagableImpl implements Messagable {
     /**
      * A buffer in case the inbox or outbox fills.
      */
-    protected PriorityBlockingQueue<Message> buffer = new PriorityBlockingQueue();			//Output Buffer
+    protected PriorityBlockingQueue<Message> buffer;			//Output Buffer
 
     /**
      * The inbox for messages to be consumed.
      */
-    protected PriorityBlockingQueue<Message> inbox = new PriorityBlockingQueue();			//Input Queue
+    protected PriorityBlockingQueue<Message> inbox;			//Input Queue
 
     /**
      * The output for messages which have been produced.
      */
-    protected PriorityBlockingQueue<Message> outbox = new PriorityBlockingQueue();			//Output Queue
+    protected PriorityBlockingQueue<Message> outbox;			//Output Queue
 
     /**
      * A list of processed Steps.
@@ -137,7 +137,7 @@ public abstract class MessagableImpl implements Messagable {
     /**
      * A link to the components factory.
      */
-    protected Components componentFactory = new Components();
+    protected Components componentFactory;
 
     @Override
     public Components getComponentFactory() {
@@ -155,6 +155,11 @@ public abstract class MessagableImpl implements Messagable {
      * @param delay default execution delay between loops
      */
     public MessagableImpl(String label, int delay) {
+        this.componentFactory = new Components();
+        this.outbox = new PriorityBlockingQueue();
+        this.inbox = new PriorityBlockingQueue();
+        this.buffer = new PriorityBlockingQueue();
+        this.metaData = new HashMap();
         this.name = label;
         this.delay = delay;
         this.consumes = new ArrayList();
@@ -165,6 +170,11 @@ public abstract class MessagableImpl implements Messagable {
      * Constructor for blank messagable.
      */
     public MessagableImpl() {
+        this.componentFactory = new Components();
+        this.outbox = new PriorityBlockingQueue();
+        this.inbox = new PriorityBlockingQueue();
+        this.buffer = new PriorityBlockingQueue();
+        this.metaData = new HashMap();
         this.name = "undefined";
         this.delay = 1;
         this.consumes = new ArrayList();

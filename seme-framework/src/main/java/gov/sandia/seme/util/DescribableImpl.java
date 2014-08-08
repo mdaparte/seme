@@ -36,12 +36,13 @@ public class DescribableImpl implements Describable {
     /**
      * Configuration options and metadata.
      */
-    protected final HashMap<String, Object> metaData = new HashMap();
+    protected final HashMap<String, Object> metaData;
 
     /**
      * Constructor for new blank describable.
      */
     public DescribableImpl() {
+        this.metaData = new HashMap();
     }
 
     @Override
